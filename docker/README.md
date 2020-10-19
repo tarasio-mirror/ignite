@@ -1,6 +1,6 @@
 # Docker for users
 
-Some changes to docker dir
+Some changes to docker dir, again
 
 We provide Dockerfiles in order to build containerized execution environment that ease the use of Ignite for computer vision and NLP tasks.
 
