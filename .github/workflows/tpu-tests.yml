@@ -66,7 +66,7 @@ jobs:
 
       - name: Run Tests
         run: |
-          export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/hostedtoolcache/Python/3.6.10/x64/lib
+          export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/hostedtoolcache/Python/3.6.13/x64/lib
           export XRT_DEVICE_MAP="CPU:0;/job:localservice/replica:0/task:0/device:XLA_CPU:0"
           export XRT_WORKERS="localservice:0;grpc://localhost:40934"
 
