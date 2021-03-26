@@ -63,8 +63,6 @@ jobs:
           ## Install test deps and Ignite
           pip install -r requirements-dev.txt
           python setup.py install
-          echo "/opt/hostedtoolcache/Python/3.7.10/x64/lib" | sudo tee -a /etc/ld.so.conf.d/mkl.conf
-          sudo ldconfig -v
 
       - name: Run Tests
         run: |
@@ -72,6 +70,7 @@ jobs:
           export XRT_DEVICE_MAP="CPU:0;/job:localservice/replica:0/task:0/device:XLA_CPU:0"
           export XRT_WORKERS="localservice:0;grpc://localhost:40934"
 
+          sudo ldconfig -v
           python -c "import torch_xla; print('torch xla version:', torch_xla.__version__)"
           bash tests/run_tpu_tests.sh
 
