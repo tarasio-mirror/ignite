@@ -63,6 +63,7 @@ jobs:
           ## Install test deps and Ignite
           pip install -r requirements-dev.txt
           python setup.py install
+          sudo echo "/opt/hostedtoolcache/Python/3.7.10/x64/lib" > /etc/ld.so.conf.d/mkl.conf
           sudo ldconfig -v
 
       - name: Run Tests
