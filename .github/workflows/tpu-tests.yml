@@ -23,7 +23,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: sudo apt-get install mlocate -y
       - name: Set up Python 3.7
         uses: actions/setup-python@v2
         with:
@@ -64,9 +63,7 @@ jobs:
           ## Install test deps and Ignite
           pip install -r requirements-dev.txt
           python setup.py install
-      
-      - name: Locate
-        run: sudo updatedb && locate libmkl_intel_lp64.so
+          sudo ldconfig -v
 
       - name: Run Tests
         run: |
