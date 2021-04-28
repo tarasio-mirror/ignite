@@ -55,9 +55,10 @@ jobs:
           python setup.py install
 
       - name: Download MNIST
-        uses: pytorch-ignite/download-mnist-github-action@master
+        uses: pytorch-ignite/download-mnist-github-action@set-pytorch-ver
         with:
           target_dir: /tmp
+          pytorch_version: ${{ matrix.pytorch-version }}
 
       - name: Run Tests
         shell: bash -l {0}
