@@ -2,9 +2,7 @@ name: PyTorch version tests
 
 on:
   # https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#onschedule
-  schedule:
-    # Run at 00:00 UTC Every Day
-    - cron: "0 0 * * *"
+  push:
 
 jobs:
   build:
