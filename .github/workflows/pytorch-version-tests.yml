@@ -1,7 +1,6 @@
 name: PyTorch version tests
 
 on:
-  # https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#onschedule
   push:
 
 jobs:
@@ -54,6 +53,11 @@ jobs:
           conda install pytorch=${{ matrix.pytorch-version }} torchvision cpuonly python=${{ matrix.python-version }} -c pytorch
           pip install -r requirements-dev.txt
           python setup.py install
+
+      - name: Download MNIST
+        uses: pytorch-ignite/download-mnist-github-action@master
+        with:
+          target_dir: /tmp
 
       - name: Run Tests
         shell: bash -l {0}
