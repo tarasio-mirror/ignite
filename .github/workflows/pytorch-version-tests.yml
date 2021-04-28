@@ -55,7 +55,7 @@ jobs:
           python setup.py install
 
       - name: Download MNIST
-        uses: pytorch-ignite/download-mnist-github-action@set-pytorch-ver
+        uses: pytorch-ignite/download-mnist-github-action@refactor
         with:
           target_dir: /tmp
 
