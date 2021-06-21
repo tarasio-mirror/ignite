@@ -1,6 +1,7 @@
 name: Stable Releases
 
 on:
+  push:
   workflow_dispatch:
 
 jobs:
