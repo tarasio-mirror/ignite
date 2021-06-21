@@ -26,6 +26,6 @@ conda config --set anaconda_upload no
 conda build --no-test --output-folder conda_build conda.recipe -c pytorch
 
 echo "List Conda binaries"
-ls conda_build
+ls conda_build/*/*.tar.bz2
 # Upload to Anaconda
 # ls conda_build/*/*.tar.bz2 | xargs -I {} anaconda -v -t $ANACONDA_TOKEN upload -u $UPLOAD_USER {}
