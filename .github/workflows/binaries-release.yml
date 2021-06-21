@@ -1,8 +1,7 @@
-name: Stable Releases
+name: Test Stable Releases
 
 on:
-  release:
-    types: [published]
+  workflow_dispatch:
 
 jobs:
   build-publish:
@@ -20,8 +19,8 @@ jobs:
         shell: bash -l {0}
         run: |
           conda install -y pytorch torchvision cpuonly -c pytorch
-          pip install -r requirements-dev.txt
-          pip install --upgrade --no-cache-dir twine
+#          pip install -r requirements-dev.txt
+#          pip install --upgrade --no-cache-dir twine
           python setup.py install
 
       - name: Build and Publish Conda binaries
@@ -32,31 +31,3 @@ jobs:
         run: |
           chmod +x ./conda.recipe/build_and_upload.sh
           ./conda.recipe/build_and_upload.sh
-
-      - name: Build and Publish PyPI binaries
-        shell: bash -l {0}
-        run: |
-          python setup.py sdist bdist_wheel
-          twine check dist/*
-          TWINE_USERNAME="${{ secrets.PYPI_USER }}" TWINE_PASSWORD="${{ secrets.PYPI_TOKEN }}" twine upload --verbose dist/*
-
-  docker-build-publish:
-    name: Trigger Build and Push Docker images to Docker Hub
-    needs: build-publish
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-        with:
-          python-version: 3.7
-      - name: Trigger Circle-CI pipeline
-        env:
-          CIRCLE_TOKEN: ${{ secrets.CIRCLE_TOKEN }}
-        run: |
-          pip install requests
-
-          if [ $GITHUB_EVENT_NAME == 'pull_request' ]; then should_publish_docker_images=false; else should_publish_docker_images=true; fi
-          branch=$GITHUB_REF
-
-          python -u .github/workflows/trigger_circle_ci.py $should_publish_docker_images $branch
