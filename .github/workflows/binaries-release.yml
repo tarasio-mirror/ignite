@@ -23,9 +23,9 @@ jobs:
 
       - name: Build and Publish Conda binaries
         shell: bash -l {0}
-        env:
-          ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
-          UPLOAD_USER: "pytorch"
+#         env:
+#           ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
+#           UPLOAD_USER: "pytorch"
         run: |
           chmod +x ./conda.recipe/build_and_upload.sh
           ./conda.recipe/build_and_upload.sh
