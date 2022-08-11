@@ -9,7 +9,8 @@ __all__ = ["PSNR"]
 
 
 class PSNR(Metric):
-    r"""Computes average `Peak signal-to-noise ratio (PSNR) <https://en.wikipedia.org/wiki/Peak_signal-to-noise_ratio>`_.
+    r"""Computes average `Peak signal-to-noise ratio (PSNR)
+    <https://en.wikipedia.org/wiki/Peak_signal-to-noise_ratio>`_.
 
     .. math::
         \text{PSNR}(I, J) = 10 * \log_{10}\left(\frac{ MAX_{I}^2 }{ \text{ MSE } }\right)
